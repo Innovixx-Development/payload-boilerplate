@@ -1,13 +1,21 @@
 import { buildConfig } from 'payload/config';
 import path from 'path';
+import { slateEditor } from '@payloadcms/richtext-slate';
+import { mongooseAdapter } from '@payloadcms/db-mongodb';
+import { webpackBundler } from '@payloadcms/bundler-webpack';
 import Users from './collections/Users';
 import { seed } from './seed';
 
 export default buildConfig({
-  serverURL: process.env.PAYLOAD_SERVER_URL,
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
   admin: {
     user: Users.slug,
+    bundler: webpackBundler(),
   },
+  db: mongooseAdapter({
+    url: process.env.MONGODB_URI,
+  }),
+  editor: slateEditor({}),
   collections: [
     Users,
   ],
