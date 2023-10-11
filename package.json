@@ -1,6 +1,6 @@
 {
-  "name": "0445-innovixx-resource-library",
-  "description": "0445-innovixx-resource-library",
+  "name": "payload-boilerplate",
+  "description": "payload-boilerplate",
   "version": "1.0.0",
   "main": "dist/server.js",
   "license": "MIT",
