@@ -7,21 +7,17 @@ import Users from './collections/Users';
 import { seed } from './seed';
 
 export default buildConfig({
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
   admin: {
-    user: Users.slug,
     bundler: webpackBundler(),
+    user: Users.slug,
   },
+  collections: [
+    Users,
+  ],
   db: mongooseAdapter({
     url: process.env.MONGODB_URI,
   }),
   editor: slateEditor({}),
-  collections: [
-    Users,
-  ],
-  typescript: {
-    outputFile: path.resolve(__dirname, 'payload-types.ts'),
-  },
   graphQL: {
     schemaOutputFile: path.resolve(__dirname, 'generated-schema.graphql'),
   },
@@ -32,5 +28,9 @@ export default buildConfig({
     ) {
       await seed(payload);
     }
+  },
+  serverURL: process.env.NEXT_PUBLIC_SERVER_URL,
+  typescript: {
+    outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
 });

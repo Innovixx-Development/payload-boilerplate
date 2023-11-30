@@ -1,13 +1,13 @@
 import { CollectionConfig } from 'payload/types';
 
 const Users: CollectionConfig = {
-  slug: 'users',
-  auth: true,
   admin: {
-    useAsTitle: 'name',
     group: 'Settings',
+    useAsTitle: 'name',
   },
+  auth: true,
   fields: [],
+  slug: 'users',
 };
 
 export default Users;
